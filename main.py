@@ -11,6 +11,7 @@ st.set_page_config(
     layout="wide"
 )
 
+# st.markdown의 unsafe_content_html 속성을 올바른 unsafe_allow_html로 수정하였습니다.
 st.markdown("""
 <style>
     .stApp {
@@ -65,7 +66,7 @@ st.markdown("""
         margin-bottom: 20px;
     }
 </style>
-""", unsafe_content_html=True)
+""", unsafe_allow_html=True)
 
 # ---------------------------------------------------------
 # 2. State Management for Navigation
@@ -292,7 +293,6 @@ elif st.session_state.formula is None:
     st.subheader(f"📌 [{st.session_state.subject}] 전체 공식 목록 (원하는 공식을 클릭하세요)")
     formulas = FORMULA_DB[st.session_state.grade][st.session_state.subject]
     
-    # 2열 레이아웃으로 공식 버튼들 나열
     col1, col2 = st.columns(2)
     for idx, f in enumerate(formulas):
         target_col = col1 if idx % 2 == 0 else col2
