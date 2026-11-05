@@ -525,15 +525,18 @@ elif st.session_state.formula is None:
     formulas = FORMULA_DB[st.session_state.grade][st.session_state.subject]
     st.markdown(f"## [{st.session_state.subject}] 공식 목록 (총 {len(formulas)}개)")
     
-    search_query = st.text_input(
-        "🔍 검색", 
-        placeholder="공식 이름, 설명 또는 미지수(v, m, F, t, λ, P 등) 입력...",
-        key="search_input"
-    )
-    st.markdown(
-        '<div class="search-hint">💡 <b>검색 팁:</b> \'v\', \'m\', \'속도\', \'질량\', \'전압\', \'pH\'처럼 미지수 기호나 키워드를 입력하면 검색됩니다.</div>', 
-        unsafe_allow_html=True
-    )
+   search_query = st.text_input(
+    "🔍 검색", 
+    placeholder="공식 이름, 설명 또는 미지수(v, m, F, t, λ, P 등) 입력...",
+    key="search_input"
+)
+st.markdown(
+    '<div class="search-hint">💡 <b>검색 팁:</b> \'v\', \'m\', \'속도\', \'질량\', \'전압\', \'pH\'처럼 미지수 기호나 키워드를 입력하면 검색됩니다.</div>', 
+    unsafe_allow_html=True
+)
+
+# 공식 카드 버튼 렌더링 (2열 배치로 꽉 채움)
+cols = st.columns(2)
     
     filtered_formulas = []
     query = search_query.strip().lower()
@@ -572,14 +575,20 @@ else:
     st.markdown('</div>', unsafe_allow_html=True)
     
     # 공식 설명 카드
-    st.markdown(f"""
-    <div class="desc-card">
-        <h4 style="margin-bottom:8px;">📖 공식 설명</h4>
-        <p style="color:#444; margin:0;">{f['desc']}</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""
+<div class="desc-card">
+    <h3 style="margin-bottom:12px;">📖 공식 설명</h3>
+    <p style="color:#332C23; margin:0;">공식에 대한 상세 해설이 큼직한 글씨로 표시됩니다.</p>
+</div>
+""", unsafe_allow_html=True)
     
     col_left, col_right = st.columns([1, 1])
+with col_left:
+    st.markdown("### 🔢 기호/미지수 입력 및 계산기")
+    # st.number_input(...) 및 [🧮 값 계산하기] 버튼
+
+with col_right:
+    st.markdown("### 📈 실시간 그래프 변화")
     
     # 미지수 설명 및 실시간 대입 계산기
     with col_left:
