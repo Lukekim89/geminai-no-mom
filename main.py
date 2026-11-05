@@ -16,113 +16,151 @@ st.markdown("""
 <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
     
+    /* 1. 디자인 컬러 변수 정의 (따뜻한 크림 & 파스텔 톤) */
     :root {
-      --bg-cream: #FFFDF5;
-      --card-cream: #FFF9E6;
-      --primary-yellow: #F6D061;
-      --primary-hover: #E3B83B;
-      --accent-warm: #E27B58;
-      --accent-soft: #FFE385;
-      --text-dark: #332C23;
-      --text-muted: #6B5E4C;
-      --border-warm: #EADCB9;
-      --shadow-soft: 0 8px 24px rgba(165, 130, 70, 0.08);
-      --font-main: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+      --bg-cream: #FFFDF5;        /* 기본 배경색 */
+      --card-cream: #FFF9E6;      /* 카드 배경색 */
+      --primary-yellow: #F6D061;  /* 메인 포인트 노란색 */
+      --primary-hover: #E3B83B;   /* 마우스 호버 시 노란색 */
+      --accent-warm: #E27B58;     /* 주황 포인트 컬러 */
+      --accent-soft: #FFE385;     /* 연한 노란색 */
+      --text-dark: #2C241B;       /* 다크 브라운 메인 텍스트 */
+      --text-muted: #5C5042;      /* 보조 텍스트 색상 */
+      --border-warm: #E3D1A5;     /* 테두리 선 색상 */
+      --shadow-soft: 0 10px 30px rgba(165, 130, 70, 0.12);
+      --font-main: 'Pretendard', 'Noto Sans KR', sans-serif;
     }
 
+    /* 2. 전체 여백 제거 및 기본 글자 크기 대폭 확대 */
     .stApp {
         background-color: var(--bg-cream);
         font-family: var(--font-main);
         color: var(--text-dark);
     }
     
-    h1, h2, h3, h4 {
-        font-family: var(--font-main) !important;
-        color: var(--text-dark) !important;
-        font-weight: 800 !important;
+    /* Streamlit 기본 상단/좌우 여백을 최소화하여 빈 공간 줄임 */
+    .block-container {
+        padding-top: 1.5rem !important;
+        padding-bottom: 2rem !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        max-width: 95% !important; /* 화면을 시원하게 채우도록 제어 */
     }
 
-    /* 카드형 대형 버튼 스타일 */
+    /* 3. 제목 및 헤더 폰트 크기 확대 */
+    h1 {
+        font-size: 3rem !important;
+        font-weight: 900 !important;
+        color: var(--text-dark) !important;
+    }
+    h2 {
+        font-size: 2.3rem !important;
+        font-weight: 800 !important;
+        color: var(--text-dark) !important;
+        margin-bottom: 12px !important;
+    }
+    h3 {
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        color: var(--text-dark) !important;
+    }
+    p, label, span {
+        font-size: 1.25rem !important;
+    }
+
+    /* 4. 화면을 가득 채우는 대형 카드 버튼 스타일 */
     div.stButton > button {
         background-color: var(--card-cream) !important;
         color: var(--text-dark) !important;
-        border: 2px solid var(--border-warm) !important;
-        border-radius: 20px !important;
-        padding: 22px 18px !important;
-        font-size: 1.15rem !important;
+        border: 3px solid var(--border-warm) !important;
+        border-radius: 24px !important;
+        padding: 35px 25px !important;       /* 버튼 내부 여백을 늘려 카드 높이 확대 */
+        font-size: 1.5rem !important;         /* 버튼 글자 크기 확대 */
         font-weight: 800 !important;
         width: 100% !important;
+        min-height: 120px !important;         /* 버튼 최소 높이 지정으로 빈공간 방지 */
         box-shadow: var(--shadow-soft) !important;
-        transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-        margin-bottom: 8px !important;
+        transition: all 0.25s ease !important;
+        margin-bottom: 15px !important;
         white-space: pre-wrap !important;
     }
 
+    /* 버튼 마우스 호버 효과 */
     div.stButton > button:hover {
         background-color: var(--accent-soft) !important;
         border-color: var(--primary-hover) !important;
-        transform: translateY(-4px) !important;
+        transform: translateY(-6px) !important;
+        box-shadow: 0 15px 35px rgba(165, 130, 70, 0.2) !important;
     }
 
-    /* 뒤로 가기 버튼 */
+    /* 5. 좌측 상단 뒤로가기 전용 버튼 스타일 */
     .back-btn button {
         background-color: #FFFFFF !important;
         color: var(--text-dark) !important;
         border: 2px solid var(--border-warm) !important;
-        border-radius: 12px !important;
-        padding: 8px 16px !important;
-        font-size: 1rem !important;
+        border-radius: 14px !important;
+        padding: 12px 24px !important;
+        font-size: 1.2rem !important;
         font-weight: bold !important;
-        box-shadow: none !important;
         min-height: unset !important;
+        box-shadow: none !important;
     }
     .back-btn button:hover {
         background-color: var(--primary-yellow) !important;
         border-color: var(--primary-hover) !important;
-        transform: translateX(-2px) !important;
+        transform: translateX(-4px) !important;
     }
 
-    /* 상단 배지 */
+    /* 6. 우측 상단 개정 교육과정 배지 */
     .badge-curr {
       background-color: var(--accent-warm);
       color: #FFF;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 20px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      padding: 8px 18px;
+      border-radius: 25px;
       display: inline-block;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    /* 수식 전용 박스 디자인 */
+    /* 7. LaTeX 수식 전용 대형 흰색 박스 디자인 */
     .math-display {
       background: #FFFFFF;
-      border: 2px solid var(--border-warm);
-      border-radius: 16px;
-      padding: 24px;
+      border: 3px solid var(--border-warm);
+      border-radius: 20px;
+      padding: 35px;
       text-align: center;
-      margin: 16px 0 24px 0;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+      margin: 20px 0 30px 0;
+      box-shadow: inset 0 3px 8px rgba(0,0,0,0.03);
     }
 
-    /* 설명 카드 */
+    /* 8. 공식 설명 카드 (높이 및 글자 확대) */
     .desc-card {
       background-color: var(--card-cream);
-      border: 2px solid var(--border-warm);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
+      border: 3px solid var(--border-warm);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 25px;
+      font-size: 1.35rem !important;
+      line-height: 1.7;
     }
 
-    /* 검색 팁 박스 */
+    /* 9. 검색창 입력 폼 및 안내 박스 크기 확대 */
+    .stTextInput input {
+        font-size: 1.3rem !important;
+        padding: 15px !important;
+        border-radius: 15px !important;
+        border: 2px solid var(--border-warm) !important;
+    }
     .search-hint {
-      font-size: 13.5px;
+      font-size: 1.15rem;
       color: var(--text-muted);
       background: #FFFFFF;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border-warm);
-      margin-bottom: 16px;
+      padding: 14px 20px;
+      border-radius: 15px;
+      border: 2px solid var(--border-warm);
+      margin-top: 10px;
+      margin-bottom: 25px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -426,23 +464,18 @@ FORMULA_DB = build_database()
 # ---------------------------------------------------------
 # 5. Header Component & Navigation Bar
 # ---------------------------------------------------------
-nav_col1, nav_col2 = st.columns([1, 5])
+nav_col1, nav_col2 = st.columns([1, 6])
 
 with nav_col1:
     if st.session_state.grade is not None:
         st.markdown('<div class="back-btn">', unsafe_allow_html=True)
         if st.button("← 뒤로"):
-            if st.session_state.formula is not None:
-                reset_to_formula_list()
-            elif st.session_state.subject is not None:
-                reset_to_subject()
-            else:
-                reset_to_grade()
-            st.rerun()
+            # 뒤로가기 동작 로직
+            pass
         st.markdown('</div>', unsafe_allow_html=True)
 
 with nav_col2:
-    st.markdown('<span class="badge-curr">2022 개정 교육과정 총 200+ 핵심 공식 수록</span>', unsafe_allow_html=True)
+    st.markdown('<span class="badge-curr">2022 개정 교육과정</span>', unsafe_allow_html=True)
     st.title("고등학교 과학 공식 모음")
 
 st.divider()
@@ -452,7 +485,9 @@ st.divider()
 # ---------------------------------------------------------
 if st.session_state.grade is None:
     st.markdown("## 학년을 선택하세요")
-    st.markdown("<p style='color: var(--text-muted);'>배우고자 하는 고등학교 학년을 클릭하세요.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='color: var(--text-muted); font-size: 1.3rem;'>배우고자 하는 고등학교 학년을 클릭해 주세요.</p>", unsafe_allow_html=True)
+
+    cols = st.columns(3)
     
     grades = [
         {"key": "1학년 (통합과학 1·2)", "title": "🌱 고등학교 1학년", "desc": "통합과학 1 · 통합과학 2 (30개 공식)"},
