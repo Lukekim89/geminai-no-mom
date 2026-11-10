@@ -194,7 +194,7 @@ def square_graph(a, x_label, y_label, title):
 # ---------------------------------------------------------
 # 4. Helper Database Generator (200+ High School Science Formulas)
 # ---------------------------------------------------------
-@st.cache_data
+
 def build_database():
     db = {
         "1학년 (통합과학 1·2)": {"통합과학": []},
