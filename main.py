@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # ---------------------------------------------------------
-# 1. Page Configuration & Custom CSS (Provided HTML Design System)
+# 1. Page Configuration & Custom CSS (대형 글자, 꽉 찬 레이아웃)
 # ---------------------------------------------------------
 st.set_page_config(
     page_title="고등학교 과학 공식 모음",
@@ -11,56 +11,51 @@ st.set_page_config(
     layout="wide"
 )
 
-# 제공된 index_html.html의 CSS 변수 및 레이아웃 커스텀 적용
 st.markdown("""
 <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
     
-    /* 1. 디자인 컬러 변수 정의 (따뜻한 크림 & 파스텔 톤) */
     :root {
-      --bg-cream: #FFFDF5;        /* 기본 배경색 */
-      --card-cream: #FFF9E6;      /* 카드 배경색 */
-      --primary-yellow: #F6D061;  /* 메인 포인트 노란색 */
-      --primary-hover: #E3B83B;   /* 마우스 호버 시 노란색 */
-      --accent-warm: #E27B58;     /* 주황 포인트 컬러 */
-      --accent-soft: #FFE385;     /* 연한 노란색 */
-      --text-dark: #2C241B;       /* 다크 브라운 메인 텍스트 */
-      --text-muted: #5C5042;      /* 보조 텍스트 색상 */
-      --border-warm: #E3D1A5;     /* 테두리 선 색상 */
+      --bg-cream: #FFFDF5;
+      --card-cream: #FFF9E6;
+      --primary-yellow: #F6D061;
+      --primary-hover: #E3B83B;
+      --accent-warm: #E27B58;
+      --accent-soft: #FFE385;
+      --text-dark: #2C241B;
+      --text-muted: #5C5042;
+      --border-warm: #E3D1A5;
       --shadow-soft: 0 10px 30px rgba(165, 130, 70, 0.12);
       --font-main: 'Pretendard', 'Noto Sans KR', sans-serif;
     }
 
-    /* 2. 전체 여백 제거 및 기본 글자 크기 대폭 확대 */
     .stApp {
         background-color: var(--bg-cream);
         font-family: var(--font-main);
         color: var(--text-dark);
     }
     
-    /* Streamlit 기본 상단/좌우 여백을 최소화하여 빈 공간 줄임 */
     .block-container {
         padding-top: 1.5rem !important;
         padding-bottom: 2rem !important;
         padding-left: 2rem !important;
         padding-right: 2rem !important;
-        max-width: 95% !important; /* 화면을 시원하게 채우도록 제어 */
+        max-width: 95% !important;
     }
 
-    /* 3. 제목 및 헤더 폰트 크기 확대 */
     h1 {
-        font-size: 3rem !important;
+        font-size: 2.8rem !important;
         font-weight: 900 !important;
         color: var(--text-dark) !important;
     }
     h2 {
-        font-size: 2.3rem !important;
+        font-size: 2.2rem !important;
         font-weight: 800 !important;
         color: var(--text-dark) !important;
         margin-bottom: 12px !important;
     }
     h3 {
-        font-size: 1.8rem !important;
+        font-size: 1.7rem !important;
         font-weight: 700 !important;
         color: var(--text-dark) !important;
     }
@@ -68,39 +63,37 @@ st.markdown("""
         font-size: 1.25rem !important;
     }
 
-    /* 4. 화면을 가득 채우는 대형 카드 버튼 스타일 */
+    /* 카드형 대형 버튼 (빈공간 최소화 및 폰트 확대) */
     div.stButton > button {
         background-color: var(--card-cream) !important;
         color: var(--text-dark) !important;
         border: 3px solid var(--border-warm) !important;
-        border-radius: 24px !important;
-        padding: 35px 25px !important;       /* 버튼 내부 여백을 늘려 카드 높이 확대 */
-        font-size: 1.5rem !important;         /* 버튼 글자 크기 확대 */
+        border-radius: 22px !important;
+        padding: 30px 22px !important;
+        font-size: 1.45rem !important;
         font-weight: 800 !important;
         width: 100% !important;
-        min-height: 120px !important;         /* 버튼 최소 높이 지정으로 빈공간 방지 */
+        min-height: 110px !important;
         box-shadow: var(--shadow-soft) !important;
         transition: all 0.25s ease !important;
-        margin-bottom: 15px !important;
+        margin-bottom: 12px !important;
         white-space: pre-wrap !important;
     }
 
-    /* 버튼 마우스 호버 효과 */
     div.stButton > button:hover {
         background-color: var(--accent-soft) !important;
         border-color: var(--primary-hover) !important;
-        transform: translateY(-6px) !important;
+        transform: translateY(-5px) !important;
         box-shadow: 0 15px 35px rgba(165, 130, 70, 0.2) !important;
     }
 
-    /* 5. 좌측 상단 뒤로가기 전용 버튼 스타일 */
     .back-btn button {
         background-color: #FFFFFF !important;
         color: var(--text-dark) !important;
         border: 2px solid var(--border-warm) !important;
         border-radius: 14px !important;
-        padding: 12px 24px !important;
-        font-size: 1.2rem !important;
+        padding: 10px 22px !important;
+        font-size: 1.15rem !important;
         font-weight: bold !important;
         min-height: unset !important;
         box-shadow: none !important;
@@ -108,44 +101,40 @@ st.markdown("""
     .back-btn button:hover {
         background-color: var(--primary-yellow) !important;
         border-color: var(--primary-hover) !important;
-        transform: translateX(-4px) !important;
+        transform: translateX(-3px) !important;
     }
 
-    /* 6. 우측 상단 개정 교육과정 배지 */
     .badge-curr {
       background-color: var(--accent-warm);
       color: #FFF;
       font-size: 1.1rem;
       font-weight: 800;
-      padding: 8px 18px;
+      padding: 6px 16px;
       border-radius: 25px;
       display: inline-block;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    /* 7. LaTeX 수식 전용 대형 흰색 박스 디자인 */
     .math-display {
       background: #FFFFFF;
       border: 3px solid var(--border-warm);
       border-radius: 20px;
-      padding: 35px;
+      padding: 30px;
       text-align: center;
-      margin: 20px 0 30px 0;
+      margin: 20px 0 25px 0;
       box-shadow: inset 0 3px 8px rgba(0,0,0,0.03);
     }
 
-    /* 8. 공식 설명 카드 (높이 및 글자 확대) */
     .desc-card {
       background-color: var(--card-cream);
       border: 3px solid var(--border-warm);
       border-radius: 20px;
-      padding: 28px;
-      margin-bottom: 25px;
-      font-size: 1.35rem !important;
-      line-height: 1.7;
+      padding: 24px;
+      margin-bottom: 22px;
+      font-size: 1.3rem !important;
+      line-height: 1.6;
     }
 
-    /* 9. 검색창 입력 폼 및 안내 박스 크기 확대 */
     .stTextInput input {
         font-size: 1.3rem !important;
         padding: 15px !important;
@@ -156,11 +145,11 @@ st.markdown("""
       font-size: 1.15rem;
       color: var(--text-muted);
       background: #FFFFFF;
-      padding: 14px 20px;
+      padding: 12px 18px;
       border-radius: 15px;
       border: 2px solid var(--border-warm);
-      margin-top: 10px;
-      margin-bottom: 25px;
+      margin-top: 8px;
+      margin-bottom: 20px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -205,6 +194,7 @@ def square_graph(a, x_label, y_label, title):
 # ---------------------------------------------------------
 # 4. Helper Database Generator (200+ High School Science Formulas)
 # ---------------------------------------------------------
+@st.cache_data
 def build_database():
     db = {
         "1학년 (통합과학 1·2)": {"통합과학": []},
@@ -218,6 +208,8 @@ def build_database():
         nonlocal count
         db[grade][subject].append({
             "id": f"f_{count}",
+            "grade": grade,
+            "subject": subject,
             "name": f"{count}. {name}",
             "latex": latex,
             "desc": desc,
@@ -260,7 +252,6 @@ def build_database():
     add_f("1학년 (통합과학 1·2)", "통합과학", "생태계 에너지 전달 효율", r"\text{효율} = \frac{\text{현 단계 에너지}}{\text{전 단계 에너지}} \times 100", "상위 영양 단계로 전달되는 에너지 비율입니다.", {"curr": "현 단계 에너지", "prev": "전 단계 에너지"}, lambda curr, prev: (curr / (prev if prev!=0 else 1e-9)) * 100)
     add_f("1학년 (통합과학 1·2)", "통합과학", "엘니뇨 다윈-타히티 남방진동 지수", r"SOI = P_{Tahiti} - P_{Darwin}", "해수면 기압 차를 이용한 남방진동 지수입니다.", {"t": "타히티 기압", "d": "다윈 기압"}, lambda t, d: t - d)
 
-    # 단순 루프 생성을 통해 200개 이상 데이터 세트를 확충
     # ==================== [2학년 물리학Ⅰ: 31~55] ====================
     add_f("2학년 (고등학교 2학년)", "물리학Ⅰ", "뉴턴 제1법칙 (관성)", r"\sum F = 0 \Rightarrow a = 0", "알짜힘이 0이면 정지 물체는 정지, 운동 물체는 등속 직선 운동합니다.", {"F": "알짜힘 (N)"}, lambda F: 0 if F==0 else F)
     add_f("2학년 (고등학교 2학년)", "물리학Ⅰ", "뉴턴 제2법칙", r"F = m a", "알짜힘은 질량과 가속도의 곱입니다.", {"m": "질량 m (kg)", "a": "가속도 a (m/s²)"}, lambda m, a: m * a, True, lambda m, a: linear_graph(m, 0, "가속도(m/s²)", "알짜힘(N)", "가속도-힘"))
@@ -461,136 +452,103 @@ def build_database():
 
 FORMULA_DB = build_database()
 
+# 전체 공식 1차원 리스트 생성 (첫 화면 실시간 검색용)
+ALL_FORMULAS = []
+for grade_data in FORMULA_DB.values():
+    for subj_formulas in grade_data.values():
+        ALL_FORMULAS.extend(subj_formulas)
+
 # ---------------------------------------------------------
 # 5. Header Component & Navigation Bar
 # ---------------------------------------------------------
-nav_col1, nav_col2 = st.columns([1, 6])
+nav_col1, nav_col2 = st.columns([1, 5])
 
 with nav_col1:
-    if st.session_state.grade is not None:
+    if st.session_state.grade is not None or st.session_state.formula is not None:
         st.markdown('<div class="back-btn">', unsafe_allow_html=True)
         if st.button("← 뒤로"):
-            # 뒤로가기 동작 로직
-            pass
+            if st.session_state.formula is not None:
+                reset_to_formula_list()
+            elif st.session_state.subject is not None:
+                reset_to_subject()
+            else:
+                reset_to_grade()
+            st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
 with nav_col2:
-    st.markdown('<span class="badge-curr">2022 개정 교육과정</span>', unsafe_allow_html=True)
+    st.markdown('<span class="badge-curr">2022 개정 교육과정 총 210개 핵심 공식 수록</span>', unsafe_allow_html=True)
     st.title("고등학교 과학 공식 모음")
 
 st.divider()
 
 # ---------------------------------------------------------
-# Step 1: Grade Selection (학년 선택)
+# 6. Global Search Input (첫 화면 및 모든 위치에서 즉시 검색 가능)
 # ---------------------------------------------------------
-if st.session_state.grade is None:
-    st.markdown("## 학년을 선택하세요")
-    st.markdown("<p style='color: var(--text-muted); font-size: 1.3rem;'>배우고자 하는 고등학교 학년을 클릭해 주세요.</p>", unsafe_allow_html=True)
-
-    cols = st.columns(3)
-    
-    grades = [
-        {"key": "1학년 (통합과학 1·2)", "title": "🌱 고등학교 1학년", "desc": "통합과학 1 · 통합과학 2 (30개 공식)"},
-        {"key": "2학년 (고등학교 2학년)", "title": "🌿 고등학교 2학년", "desc": "물리학Ⅰ, 화학Ⅰ, 생명과학Ⅰ, 지구과학Ⅰ (100개 공식)"},
-        {"key": "3학년 (고등학교 3학년)", "title": "🌳 고등학교 3학년", "desc": "물리학Ⅱ, 화학Ⅱ, 생명과학Ⅱ, 지구과학Ⅱ (80개 공식)"}
-    ]
-    
-    cols = st.columns(3)
-    for idx, g in enumerate(grades):
-        with cols[idx]:
-            if st.button(f"{g['title']}\n\n{g['desc']}", key=f"grade_{idx}"):
-                st.session_state.grade = g["key"]
-                st.rerun()
-
-# ---------------------------------------------------------
-# Step 2: Subject Selection (과목 선택)
-# ---------------------------------------------------------
-elif st.session_state.subject is None:
-    st.markdown(f"## [{st.session_state.grade}] 과목을 선택하세요")
-    st.markdown("<p style='color: var(--text-muted);'>공식을 확인하고 싶은 과목을 누르세요.</p>", unsafe_allow_html=True)
-    
-    subjects = list(FORMULA_DB[st.session_state.grade].keys())
-    cols = st.columns(min(len(subjects), 4))
-    for idx, subj in enumerate(subjects):
-        count_f = len(FORMULA_DB[st.session_state.grade][subj])
-        with cols[idx % len(cols)]:
-            if st.button(f"📚 {subj}\n\n({count_f}개 공식)", key=f"subj_{idx}"):
-                st.session_state.subject = subj
-                st.rerun()
-
-# ---------------------------------------------------------
-# Step 3: Formula List & Search (공식 목록 및 미지수 검색)
-# ---------------------------------------------------------
-elif st.session_state.formula is None:
-    formulas = FORMULA_DB[st.session_state.grade][st.session_state.subject]
-    st.markdown(f"## [{st.session_state.subject}] 공식 목록 (총 {len(formulas)}개)")
-    
-   search_query = st.text_input(
-    "🔍 검색", 
-    placeholder="공식 이름, 설명 또는 미지수(v, m, F, t, λ, P 등) 입력...",
-    key="search_input"
+search_query = st.text_input(
+    "🔍 전 과목 통합 공식 검색 (200+ 공식 대상)", 
+    placeholder="공식 이름, 설명 또는 미지수 기호(v, m, F, t, P, pH, λ 등) 입력...",
+    key="global_search_input"
 )
 st.markdown(
-    '<div class="search-hint">💡 <b>검색 팁:</b> \'v\', \'m\', \'속도\', \'질량\', \'전압\', \'pH\'처럼 미지수 기호나 키워드를 입력하면 검색됩니다.</div>', 
+    '<div class="search-hint">💡 <b>검색 팁:</b> \'v\', \'m\', \'속도\', \'질량\', \'전압\', \'pH\'처럼 기호나 키워드를 입력하면 해당하는 모든 공식이 즉시 검색됩니다.</div>', 
     unsafe_allow_html=True
 )
 
-# 공식 카드 버튼 렌더링 (2열 배치로 꽉 채움)
-cols = st.columns(2)
-    
-    filtered_formulas = []
-    query = search_query.strip().lower()
-    for f in formulas:
-        if not query:
-            filtered_formulas.append(f)
-        else:
-            match_name = query in f["name"].lower()
-            match_desc = query in f["desc"].lower()
-            match_vars = any(query in k.lower() or query in v.lower() for k, v in f["vars"].items())
-            if match_name or match_desc or match_vars:
-                filtered_formulas.append(f)
+# ---------------------------------------------------------
+# 7. Main Dynamic Router & View Renderer
+# ---------------------------------------------------------
+query = search_query.strip().lower()
 
-    if not filtered_formulas:
-        st.info("검색된 미지수나 공식이 없습니다.")
+# [상황 A] 글로벌 검색어가 입력되었을 경우 (카테고리 무관 즉시 목록 표시)
+if query:
+    st.markdown(f"### 🔍 '{search_query}' 검색 결과")
+    
+    filtered = []
+    for f in ALL_FORMULAS:
+        match_name = query in f["name"].lower()
+        match_desc = query in f["desc"].lower()
+        match_vars = any(query in k.lower() or query in v.lower() for k, v in f["vars"].items())
+        match_subj = query in f["subject"].lower()
+        if match_name or match_desc or match_vars or match_subj:
+            filtered.append(f)
+            
+    if not filtered:
+        st.info("검색어와 일치하는 미지수나 공식이 없습니다.")
     else:
         cols = st.columns(2)
-        for idx, f in enumerate(filtered_formulas):
+        for idx, f in enumerate(filtered):
             var_list_str = ", ".join(f["vars"].keys())
             with cols[idx % 2]:
-                if st.button(f"📑 {f['name']}\n📌 미지수: {var_list_str}", key=f"form_{idx}"):
+                btn_label = f"📑 {f['name']} [{f['subject']}]\n📌 미지수: {var_list_str}"
+                if st.button(btn_label, key=f"search_f_{f['id']}"):
+                    st.session_state.grade = f["grade"]
+                    st.session_state.subject = f["subject"]
                     st.session_state.formula = f
                     st.rerun()
 
-# ---------------------------------------------------------
-# Step 4: Formula Detail View & Modal Style Container (공식 상세 모달 뷰)
-# ---------------------------------------------------------
-else:
+# [상황 B] 공식 상세 정보 화면 (Step 4)
+elif st.session_state.formula is not None:
     f = st.session_state.formula
     st.markdown(f"## 💡 {f['name']}")
-    st.markdown(f"<p style='color:var(--text-muted);'>{st.session_state.subject} · {st.session_state.grade}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:var(--text-muted);'>{f['subject']} · {f['grade']}</p>", unsafe_allow_html=True)
     
-    # 수식 박스 (math-display)
+    # LaTeX 수식 대형 박스
     st.markdown('<div class="math-display">', unsafe_allow_html=True)
     st.latex(f["latex"])
     st.markdown('</div>', unsafe_allow_html=True)
     
     # 공식 설명 카드
-    st.markdown("""
-<div class="desc-card">
-    <h3 style="margin-bottom:12px;">📖 공식 설명</h3>
-    <p style="color:#332C23; margin:0;">공식에 대한 상세 해설이 큼직한 글씨로 표시됩니다.</p>
-</div>
-""", unsafe_allow_html=True)
+    st.markdown(f"""
+    <div class="desc-card">
+        <h3 style="margin-bottom:12px;">📖 공식 설명</h3>
+        <p style="color:#2C241B; margin:0;">{f['desc']}</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     col_left, col_right = st.columns([1, 1])
-with col_left:
-    st.markdown("### 🔢 기호/미지수 입력 및 계산기")
-    # st.number_input(...) 및 [🧮 값 계산하기] 버튼
-
-with col_right:
-    st.markdown("### 📈 실시간 그래프 변화")
     
-    # 미지수 설명 및 실시간 대입 계산기
+    # 좌측: 미지수 입력 및 실시간 대입 계산기
     with col_left:
         st.markdown("### 🔢 기호/미지수 설명 및 실시간 대입 계산기")
         
@@ -610,7 +568,7 @@ with col_right:
             except Exception as e:
                 st.error(f"계산 중 오류가 발생했습니다: {e}")
 
-    # 실시간 그래프 시각화 (chartSection)
+    # 우측: 실시간 그래프 시각화
     with col_right:
         st.markdown("### 📈 실시간 그래프 변화")
         if f["has_graph"] and f["graph_fn"] is not None:
@@ -638,3 +596,48 @@ with col_right:
                 st.warning("이 대입값에서는 그래프를 표시할 수 없습니다. 적절한 수치를 입력해 주세요.")
         else:
             st.info("ℹ️ 이 공식은 고정 비율 또는 단일 상관식이므로 2D 연속 그래프를 제공하지 않습니다.")
+
+# [상황 C] Step 3: 과목 내 공식 목록 화면
+elif st.session_state.subject is not None:
+    formulas = FORMULA_DB[st.session_state.grade][st.session_state.subject]
+    st.markdown(f"## [{st.session_state.subject}] 공식 목록 (총 {len(formulas)}개)")
+    
+    cols = st.columns(2)
+    for idx, f in enumerate(formulas):
+        var_list_str = ", ".join(f["vars"].keys())
+        with cols[idx % 2]:
+            if st.button(f"📑 {f['name']}\n📌 미지수: {var_list_str}", key=f"form_{idx}"):
+                st.session_state.formula = f
+                st.rerun()
+
+# [상황 D] Step 2: 학년 선택 후 과목 선택 화면
+elif st.session_state.grade is not None:
+    st.markdown(f"## [{st.session_state.grade}] 과목을 선택하세요")
+    st.markdown("<p style='color: var(--text-muted); font-size: 1.3rem;'>공식을 확인하고 싶은 과목을 누르세요.</p>", unsafe_allow_html=True)
+    
+    subjects = list(FORMULA_DB[st.session_state.grade].keys())
+    cols = st.columns(min(len(subjects), 4))
+    for idx, subj in enumerate(subjects):
+        count_f = len(FORMULA_DB[st.session_state.grade][subj])
+        with cols[idx % len(cols)]:
+            if st.button(f"📚 {subj}\n\n({count_f}개 공식)", key=f"subj_{idx}"):
+                st.session_state.subject = subj
+                st.rerun()
+
+# [상황 E] Step 1: 첫 화면 (학년 선택 화면)
+else:
+    st.markdown("## 학년을 선택하세요")
+    st.markdown("<p style='color: var(--text-muted); font-size: 1.3rem;'>배우고자 하는 고등학교 학년을 클릭하거나, 상단 검색창에서 바로 공식을 찾아보세요.</p>", unsafe_allow_html=True)
+    
+    grades = [
+        {"key": "1학년 (통합과학 1·2)", "title": "🌱 고등학교 1학년", "desc": "통합과학 1 · 통합과학 2 (30개 공식)"},
+        {"key": "2학년 (고등학교 2학년)", "title": "🌿 고등학교 2학년", "desc": "물리학Ⅰ, 화학Ⅰ, 생명과학Ⅰ, 지구과학Ⅰ (100개 공식)"},
+        {"key": "3학년 (고등학교 3학년)", "title": "🌳 고등학교 3학년", "desc": "물리학Ⅱ, 화학Ⅱ, 생명과학Ⅱ, 지구과학Ⅱ (80개 공식)"}
+    ]
+    
+    cols = st.columns(3)
+    for idx, g in enumerate(grades):
+        with cols[idx]:
+            if st.button(f"{g['title']}\n\n{g['desc']}", key=f"grade_{idx}"):
+                st.session_state.grade = g["key"]
+                st.rerun()
